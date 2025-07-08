@@ -54,8 +54,12 @@ TestResult.xml
 nunit-*.xml
 
 **/.vs/
+**/vscode/
 # Visual Studio Code
 .vscode/
 # Rider
 .idea/  
-# Visual Studio Code workspace storage
+# Rider specific
+.idea/
+# node_modules
+**/node_modules/
