@@ -1,0 +1,1 @@
+# vue-netcore-test-project
