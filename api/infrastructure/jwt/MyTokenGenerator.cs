@@ -27,10 +27,14 @@ namespace infrastructure.jwt
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 
                 };
-
-            foreach (var item in dictionary) {
-                claims.Add(new Claim(type:item.Key, value:item.Value.ToString()));
+            if (dictionary != null)
+            {
+                foreach (var item in dictionary)
+                {
+                    claims.Add(new Claim(type: item.Key, value: item.Value.ToString()));
+                }
             }
+            
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

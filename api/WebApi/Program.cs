@@ -28,10 +28,10 @@ builder.Services.AddCors(options =>
 
     options.AddPolicy("AllowAllOrigins",
       
-builder => builder.WithOrigins("https://localhost:7294")
-                   .AllowAnyOrigin()
-                         .AllowAnyMethod()
-                          .AllowAnyHeader());
+    builder => builder.WithOrigins("https://localhost:7294")
+                       .AllowAnyOrigin()
+                             .AllowAnyMethod()
+                              .AllowAnyHeader());
 });
 
 

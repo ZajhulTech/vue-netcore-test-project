@@ -240,5 +240,7 @@ namespace common
             var result = await repository.SingleOrDefaultAsync(query).ConfigureAwait(false);
             return result;
         }
+
     }
 }
+    

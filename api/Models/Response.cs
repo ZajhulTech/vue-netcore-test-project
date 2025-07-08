@@ -1,4 +1,5 @@
-﻿namespace Api.Models
+﻿
+namespace Api.Models
 {
    public class Response<T> : Response
    where T : class
@@ -46,6 +47,7 @@
             this.StatusCode = statusCode;
             return this;
         }
+
     }
 
     public class Response : ResponseBase

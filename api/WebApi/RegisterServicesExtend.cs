@@ -1,4 +1,5 @@
-﻿using infrastructure.DataBase;
+﻿using Api.UserStories.domain;
+using infrastructure.DataBase;
 using infrastructure.jwt;
 using Interfaces.UserStory;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -104,22 +105,8 @@ namespace WebApi
                 services.AddAuthorization(options =>
             {
                 options.AddPolicy("CreatePolicy", policy =>
-                    policy.RequireClaim("Crear", "True"));
+                policy.RequireClaim("salesAdd", "True"));
 
-                options.AddPolicy("UpdatePolicy", policy =>
-                  policy.RequireClaim("Actualizar", "True"));
-
-                options.AddPolicy("DeletePolicy", policy =>
-                  policy.RequireClaim("Eliminar", "True"));
-
-                options.AddPolicy("ShowListPolicy", policy =>
-                  policy.RequireClaim("Listar", "True"));
-
-                options.AddPolicy("ImportPolicy", policy =>
-                  policy.RequireClaim("Importar", "True"));
-
-                options.AddPolicy("ExportPolicy", policy =>
-                  policy.RequireClaim("Importar", "True"));
             });
             #endregion
 
@@ -128,8 +115,9 @@ namespace WebApi
             services.AddScoped<IMyTokenGenerator, MyTokenGenerator>();
 
             // business logic
-            services.AddTransient<ItokenUserStory, tokenUserStory>();
-            services.AddTransient<IemployeeUserStory, employeeUserStory>();
+            services.AddTransient<ItokenUserStory, TokenUserStory>();
+            services.AddTransient<IsalesUserStory, SalesUserStory>();
+          //  services.AddTransient<IemployeeUserStory, employeeUserStory>();
             #endregion
         }
 

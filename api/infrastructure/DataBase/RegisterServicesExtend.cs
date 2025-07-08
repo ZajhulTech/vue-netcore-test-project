@@ -1,16 +1,11 @@
-﻿using Api.Models.DataBase;
+﻿
 using EntityFrameworkCore.UnitOfWork.Extensions;
-using infrastructure.jwt;
 using interfaces.DataBase;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace infrastructure.DataBase
 {
@@ -35,11 +30,11 @@ namespace infrastructure.DataBase
             // Crear la cadena de conexión completa
             cnn = builder.ConnectionString;
 
-            services.AddDbContext<JvfcontrolContext>(options => options.UseSqlServer(cnn));
+            services.AddDbContext<DemoControlContext>(options => options.UseSqlServer(cnn));
 
             services.AddUnitOfWork();
 
-            services.AddScoped<DbContext, JvfcontrolContext>();
+            services.AddScoped<DbContext, DemoControlContext>();
             services.AddScoped<IMyUnitOfWork, MyUnitOfWork>();
 
             //   services.AddDbContext<TuDbContext>(options =>

@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{E40B
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "vue-code", "vue-code\vue-code.esproj", "{4587D72E-EB19-476D-875C-BD4F23C0215D}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "vueproject1", "vueproject1\vueproject1.esproj", "{DFE4D8EB-A924-49D4-A8AF-3C94F54CDD8A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,12 +55,6 @@ Global
 		{4587D72E-EB19-476D-875C-BD4F23C0215D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4587D72E-EB19-476D-875C-BD4F23C0215D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4587D72E-EB19-476D-875C-BD4F23C0215D}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{DFE4D8EB-A924-49D4-A8AF-3C94F54CDD8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFE4D8EB-A924-49D4-A8AF-3C94F54CDD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFE4D8EB-A924-49D4-A8AF-3C94F54CDD8A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{DFE4D8EB-A924-49D4-A8AF-3C94F54CDD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFE4D8EB-A924-49D4-A8AF-3C94F54CDD8A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFE4D8EB-A924-49D4-A8AF-3C94F54CDD8A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

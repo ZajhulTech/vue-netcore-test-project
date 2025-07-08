@@ -1,9 +1,53 @@
 
-# Blazor |  NetMaui Demo
+# net core api
 
 ## Descripción
 
-Descripción breve del proyecto: Proyecto Demo de Api con seguridad basica (user y pass) con salidas en webblazor y netmaui
+
+
+#
+
+// Ejemplo 1: Venta en tienda
+{
+  "description": "In-Store Purchase",
+  "date": "2025-07-08T00:00:00",
+  "details": [
+    { "productId": 1, "quantity": 2, "unitPrice": 22.50 },
+    { "productId": 2, "quantity": 1, "unitPrice": 18.00 }
+  ]
+}
+
+// Ejemplo 2: Pedido en línea
+{
+  "description": "Online Order #1001",
+  "date": "2025-07-07T00:00:00",
+  "details": [
+    { "productId": 3, "quantity": 3, "unitPrice": 25.00 },
+    { "productId": 1, "quantity": 1, "unitPrice": 22.50 }
+  ]
+}
+
+// Ejemplo 3: Promoción de cumpleaños
+{
+  "description": "Birthday Promo",
+  "date": "2025-07-06T00:00:00",
+  "details": [
+    { "productId": 2, "quantity": 5, "unitPrice": 18.00 },
+    { "productId": 3, "quantity": 2, "unitPrice": 25.00 },
+    { "productId": 1, "quantity": 1, "unitPrice": 22.50 }
+  ]
+}
+
+// Ejemplo 4: Venta de evento especial
+{
+  "description": "Special Event Sale",
+  "date": "2025-07-05T00:00:00",
+  "details": [
+    { "productId": 1, "quantity": 4, "unitPrice": 22.50 },
+    { "productId": 3, "quantity": 4, "unitPrice": 25.00 }
+  ]
+}
+
 
 
 ## Comandos utiles para hacer un scanfolding de base de datos
@@ -19,5 +63,6 @@ Scaffold-DbContext Name=ConnectionStrings:DefaultConnection Microsoft.EntityFram
 
 dotnet ef dbcontext scaffold Name=ConnectionStrings:DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -o Models --startup-project ../Api
 
-
 dotnet ef dbcontext scaffold Name=ConnectionStrings:DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -o DataBase --startup-project ../Api --force
+
+

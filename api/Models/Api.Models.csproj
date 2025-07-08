@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="ClientApi\Employeers\" />
     <Folder Include="ClientApi\TokenService\" />
-    <Folder Include="DataBase\" />
   </ItemGroup>
 
   <ItemGroup>
