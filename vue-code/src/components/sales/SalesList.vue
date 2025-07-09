@@ -2,7 +2,7 @@
   <div class="sales-list">
  <div class="sales-header">
   <h2 class="title">🛒 Lista de Ventas</h2>
-  <button class="add-sale-btn" @click="$router.push('/sales/new')">➕ Agregar Venta</button>
+  <KkButton @click="$router.push('/sales/new')" title="Agregar Venta">➕</KkButton>
 </div>
 
     <div class="table-wrapper">
@@ -35,9 +35,9 @@
     </div>
 
    <div class="pagination">
-  <button :disabled="pageIndex === 1" @click="prevPage">⏮️ Anterior</button>
+  <KkButton :disabled="pageIndex === 1" @click="prevPage" title="Anterior">⏮️</KkButton>
   <span>Página {{ pageIndex }} de {{ totalPages }}</span>
-  <button :disabled="pageIndex >= totalPages" @click="nextPage">Siguiente ⏭️</button>
+  <KkButton :disabled="pageIndex >= totalPages" @click="nextPage" title="Siguiente">⏭️</KkButton>
 </div>
   </div>
 </template>
@@ -46,6 +46,7 @@
 <script setup>
   import { ref, onMounted } from 'vue';
   import { getSales } from '@/services/salesService';
+  import KkButton from '@/components/atomic/KkButton.vue';
 
   const sales = ref([]);
   const pageIndex = ref(1);

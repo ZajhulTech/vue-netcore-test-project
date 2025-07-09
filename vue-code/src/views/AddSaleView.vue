@@ -33,7 +33,7 @@
                 ${{ (item.quantity * getProductPrice(item.productId)).toFixed(2) }}
               </td>
               <td>
-                <KkButton @click="removeItem(index)">❌</KkButton>
+                <KkButton @click="removeItem(index)" title="eliminar">❌</KkButton>
               </td>
             </tr>
           </tbody>
@@ -47,7 +47,7 @@
               {{ product.name }} — ${{ product.price }}
             </option>
           </select>
-          <KkButton @click="addProduct">➕ Agregar</KkButton>
+          <KkButton @click="addProduct" title="Agregar">➕</KkButton>
         </div>
       </div>
 
@@ -55,7 +55,7 @@
         <p><strong>Total: </strong> ${{ totalAmount.toFixed(2) }}</p>
       </div>
 
-      <button class="submit-button" @click="submitSale">💾 Guardar Venta</button>
+      <KkButton @click="submitSale" title="Guardar Venta">💾</KkButton>
     </div>
   </MainLayout>
 </template>
