@@ -1,15 +1,11 @@
-<script setup>
-
-</script>
 <template>
-  <div>
-    <h1> Hola a todos !</h1>
-
-  </div>
+  <router-view />
 </template>
 
-<style>
+<script setup>
+</script>
 
+<style>
 </style>
 
 

@@ -14,7 +14,6 @@ namespace Api.UserStories.domain
     {
         private readonly IMyUnitOfWork unitOfWork = unitOfWork;
 
-      
         public async Task<Response<PagedResponse<SalesGroupedResponse>>> GetAllSalesDetail(PaginationRequest request)
         {
             var result = new Response<PagedResponse<SalesGroupedResponse>>();
@@ -26,6 +25,18 @@ namespace Api.UserStories.domain
             var salesModel = unitOfWork.Repository<Sale>();
 
             data.TotalRecords = await salesModel.CountAsync();
+
+            data.TotalPages = (int)Math.Ceiling((double)data.TotalRecords / request.pageSize);
+            if (data.TotalPages == 0 && data.Raw.Any())
+            {
+                data.TotalPages = 1;
+            }
+
+            if (request.pageIndex > data.TotalPages) {
+                result.StatusCode = (int)HttpStatusCode.BadRequest;
+                result.Message = $"El máximo de páginas es {data.TotalPages}.";
+                return result;
+            }
 
             var salesList = await salesModel.SearchPageAsync(
                 pageIndex: request.pageIndex,
@@ -51,7 +62,7 @@ namespace Api.UserStories.domain
 
             if (saleDetails == null || !saleDetails.Any())
             {
-                result.StatusCode = (int)HttpStatusCode.NotFound;
+                result.StatusCode = (int)HttpStatusCode.NoContent;
                 result.Message = "No se encontraron detalles de ventas.";
                 return result;
             }
@@ -78,18 +89,13 @@ namespace Api.UserStories.domain
                 })
                 .ToList();
 
-            data.TotalPages = (int)Math.Ceiling((double)data.TotalRecords / request.pageSize);
-            if (data.TotalPages == 0 && data.Raw.Any())
-            {
-                data.TotalPages = 1;
-            }
+         
 
             result.Payload = data;
             result.StatusCode = 200;
             result.Message = "OK";
             return result;
         }
-
 
         public async Task<Response<SaleResponse>> CreateSaleAsync(SaleCreateRequest request)
         {

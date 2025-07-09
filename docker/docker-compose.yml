@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  webapi:
+    build:
+      context: .
+      dockerfile: api/WebApi/Dockerfile
+    ports:
+      - "8080:8080"   # Puerto del contenedor → Puerto de la máquina
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    volumes:
+      - ./logs:/app/logs

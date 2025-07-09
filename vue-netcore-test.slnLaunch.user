@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "api\\WebApi\\WebApi.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "vue-code\\vue-code.esproj",
+        "Action": "StartWithoutDebugging",
+        "DebugTarget": "localhost (Edge)"
+      }
+    ]
+  }
+]

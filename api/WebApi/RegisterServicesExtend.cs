@@ -117,7 +117,8 @@ namespace WebApi
             // business logic
             services.AddTransient<ItokenUserStory, TokenUserStory>();
             services.AddTransient<IsalesUserStory, SalesUserStory>();
-          //  services.AddTransient<IemployeeUserStory, employeeUserStory>();
+            services.AddTransient<ICatalogUserStory, CatalogUserStory>();
+            //  services.AddTransient<IemployeeUserStory, employeeUserStory>();
             #endregion
         }
 

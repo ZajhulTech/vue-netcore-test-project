@@ -2,7 +2,6 @@
 using Interfaces.UserStory;
 using Microsoft.AspNetCore.Mvc;
 using Api.infrastructure.Api;
-using Api.UserStories.domain;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 

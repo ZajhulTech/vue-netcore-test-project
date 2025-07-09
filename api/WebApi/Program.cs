@@ -1,14 +1,20 @@
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using infrastructure.Api;
 using Microsoft.OpenApi.Models;
-using Microsoft.VisualBasic;
 using WebApi;
 
+DotNetEnv.Env.Load();
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration["ConnectionStrings:DefaultConnection"] = Environment.GetEnvironmentVariable("APP_DB");
+builder.Configuration["Jwt:Key"] = Environment.GetEnvironmentVariable("JWT_KEY");
+builder.Configuration["Jwt:Issuer"] = Environment.GetEnvironmentVariable("JWT_ISSUER");
+builder.Configuration["Jwt:Audience"] = Environment.GetEnvironmentVariable("JWT_AUDIENCE");
 
 IConfiguration conf = builder.Configuration;
 
-builder.WebHost.UseUrls(conf["UseUrls"]);
+//builder.WebHost.UseUrls(conf["UseUrls"]);
+//builder.WebHost.UseUrls("http://+:8080", "https://+:9091");
+builder.WebHost.UseUrls("http://+:8080");
 
 builder.Services.AddControllers(config =>
 {
@@ -18,10 +24,7 @@ builder.Services.AddControllers(config =>
 // Add services to the container.
 builder.Services.RegisterServices(builder.Configuration);
 
-
 builder.Services.AddEndpointsApiExplorer();
-
-
 
 builder.Services.AddCors(options =>
 {
@@ -33,7 +36,6 @@ builder.Services.AddCors(options =>
                              .AllowAnyMethod()
                               .AllowAnyHeader());
 });
-
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -83,7 +85,6 @@ if (app.Environment.IsDevelopment())
 }
 
 */
-
 
 app.UseHttpsRedirection();
 

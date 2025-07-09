@@ -1,0 +1,6 @@
+projectKey=krispy-sales-backend
+serverUrl=http://192.168.0.17:9001
+serverVersion=25.6.0.109173
+dashboardUrl=http://192.168.0.17:9001/dashboard?id=krispy-sales-backend
+ceTaskId=84b0164e-7680-46b5-97e6-26de539621ad
+ceTaskUrl=http://192.168.0.17:9001/api/ce/task?id=84b0164e-7680-46b5-97e6-26de539621ad

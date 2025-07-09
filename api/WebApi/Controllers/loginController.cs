@@ -13,7 +13,6 @@ namespace WebApi.Controllers
         private readonly ItokenUserStory tokenUserStory = tokenUserStory;
 
         [HttpPost]
-        
         public async Task<IActionResult> getToken(LoginRequest request)
         {
             if (request == null)

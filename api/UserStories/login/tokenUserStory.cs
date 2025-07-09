@@ -19,10 +19,15 @@ namespace UserStories.login
 
         public async Task<Response<ClientToken>> GetToken(IConfiguration configuration, LoginRequest request)
         {
+            var result = new Response<ClientToken>();
+
 
             if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
             {
-                return new Response<ClientToken>() { StatusCode = 400, Message = "Usuario y contraseña requeridos" };
+                result.AddErrors("Usuario y contraseña requeridos", 400);
+
+                return result;
+
             }
 
             // check user exist on database
@@ -32,12 +37,16 @@ namespace UserStories.login
 
             if (user == null)
             {
-                return new Response<ClientToken>() { StatusCode = 400, Message = "Usuario no identificado" };
+                result.AddErrors("Usuario no identificado", 400);
+                return result;
             }
 
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash)) {
+                
+                result.AddErrors("Credenciales inválidas", 400);
+                return result;
 
-            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-                return new Response<ClientToken>() { StatusCode = 400, Message = "Credenciales inválidas" };
+            }
 
             Dictionary<string, bool> claim_list = new Dictionary<string, bool>() {
 

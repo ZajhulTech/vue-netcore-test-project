@@ -1,0 +1,15 @@
+:root {
+  --kk-primary:  #01733d; /* rojo tipo Krispy Kreme */
+  --kk-secondary:#ad282dea;  /* verde institucional */
+  --kk-white: #ffffff;
+  --kk-gray: #f7f7f7;
+  --kk-dark: #2e2e2e;
+
+  --font-base: 'Roboto', sans-serif;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--kk-gray);
+  color: var(--kk-dark);
+}
