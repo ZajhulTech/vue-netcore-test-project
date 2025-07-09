@@ -4,8 +4,13 @@
       <h2 class="title">Iniciar Sesión</h2>
       <form @submit.prevent="handleLogin" class="login-form">
          <KkInput v-model="username" label="Usuario" />
+         <p v-if="usernameError" class="error-message">{{ usernameError }}</p>
          <KkInput v-model="password" type="password" label="Contraseña" />
-         <KkButton @click="handleLogin">Ingresar</KkButton>
+         <p v-if="passwordError" class="error-message">{{ passwordError }}</p>
+         <KkButton :disabled="loading" @click="handleLogin" title="🔑 Ingresar">
+          <span v-if="loading">⏳</span>
+          <span v-else>🔑 Ingresar</span>
+        </KkButton>
 
         <!-- Mensaje de error -->
         <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
@@ -27,21 +32,37 @@ const toast = useToast();
 const username = ref('');
 const password = ref('');
 const errorMessage = ref('');
-const loading = ref(false); // estado de carga
+const usernameError = ref('');
+const passwordError = ref('');
+const loading = ref(false);
 
 const handleLogin = async () => {
   errorMessage.value = '';
-  loading.value = true; // inicio de carga
+  usernameError.value = '';
+  passwordError.value = '';
+  loading.value = true;
+
+  if (!username.value.trim()) {
+    usernameError.value = 'El usuario es requerido.';
+  }
+  if (!password.value.trim()) {
+    passwordError.value = 'La contraseña es requerida.';
+  }
+
+  if (usernameError.value || passwordError.value) {
+    loading.value = false;
+    return;
+  }
+
   try {
     const res = await login(username.value, password.value);
     localStorage.setItem('token', res.payload.token);
     toast.success("Inicio de sesión exitoso");
     emit('login-success');
   } catch (e) {
-
     errorMessage.value = 'Login inválido. Por favor, verifica tus credenciales.';
   } finally {
-    loading.value = false; // fin de carga
+    loading.value = false;
   }
 };
 </script>

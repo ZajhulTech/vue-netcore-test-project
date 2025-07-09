@@ -48,6 +48,7 @@
   import { getSales } from '@/services/salesService';
   import KkButton from '@/components/atomic/KkButton.vue';
 
+  const isLoading = ref(false);
   const sales = ref([]);
   const pageIndex = ref(1);
   const totalPages = ref(1);
@@ -55,20 +56,29 @@
   const hasMore = ref(false);
 
   const loadSales = async () => {
-    const response = await getSales(pageIndex.value, pageSize);
-    sales.value = response.payload.raw;
-    totalPages.value = response.payload.totalPages;
+    if (isLoading.value) return;
+
+    isLoading.value = true;
+    try {
+      const res = await getSales(pageIndex.value, pageSize.value);
+      sales.value = res.payload.raw;
+      totalPages.value = res.payload.totalPages;
+    } catch (err) {
+      console.error("Error al cargar ventas:", err);
+    } finally {
+      isLoading.value = false;
+    }
   };
 
   const prevPage = () => {
-    if (pageIndex.value > 1) {
+    if (pageIndex.value > 1 && !isLoading.value) {
       pageIndex.value--;
       loadSales();
     }
   };
 
   const nextPage = () => {
-    if (pageIndex.value < totalPages.value) {
+    if (pageIndex.value < totalPages.value && !isLoading.value) {
       pageIndex.value++;
       loadSales();
     }
@@ -122,17 +132,6 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-}
-
-button {
-  background-color: var(--kk-primary, #2a9d8f);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
 }
 
 button:disabled {
@@ -203,15 +202,7 @@ button:hover:enabled {
   gap: 1rem;
 }
 
-.pagination button {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: var(--kk-primary);
-  color: var(--kk-white);
-  border-radius: 4px;
-  font-weight: bold;
-}
+
 
 .pagination button:disabled {
   background-color: #ccc;

@@ -55,7 +55,9 @@
         <p><strong>Total: </strong> ${{ totalAmount.toFixed(2) }}</p>
       </div>
 
-      <KkButton @click="submitSale" title="Guardar Venta">💾</KkButton>
+      <div class="actions">
+        <KkButton :disabled="isSubmitting" @click="submitSale" title="Guardar Venta">💾</KkButton>
+      </div>
     </div>
   </MainLayout>
 </template>
@@ -69,6 +71,7 @@ import KkButton from '@/components/atomic/KkButton.vue';
 import KkInput from '@/components/atomic/KkInput.vue';
 import { useToast } from "vue-toastification";
 
+const isSubmitting = ref(false);
 const toast = useToast();
 
 const description = ref('');
@@ -118,30 +121,34 @@ const submitSale = async () => {
     return;
   }
 
+  if (isSubmitting.value) return;
+
+  isSubmitting.value = true;
+
   const saleData = {
     description: description.value,
     details: selectedItems.value.map(item => ({
       productId: item.productId,
       quantity: item.quantity,
-      unitPrice: getProductPrice(item.productId)
-    }))
+      unitPrice: getProductPrice(item.productId),
+    })),
   };
 
   try {
     const token = localStorage.getItem('token');
     if (!token) {
-
       toast.error('Debe iniciar sesión para guardar una venta.');
       return;
     }
 
     await createSale(saleData, token);
-    toast.success("Venta guardada correctamente");
+    toast.success('Venta guardada correctamente');
     description.value = '';
     selectedItems.value = [];
   } catch (err) {
     toast.error('Error al guardar la venta.');
-
+  } finally {
+    isSubmitting.value = false;
   }
 };
 
@@ -208,5 +215,11 @@ onMounted(async () => {
   color: #e74c3c;
   font-size: 0.9rem;
   margin-top: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
 }
 </style>

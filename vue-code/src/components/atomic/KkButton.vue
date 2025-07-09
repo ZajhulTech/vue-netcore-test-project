@@ -1,10 +1,10 @@
 <!-- src/components/ui/KkButton.vue -->
 <template>
   <button
-    class="kk-btn"
-    :class="color"
-    :title="tooltip"
+   :class="['kk-btn', color]"
+    :disabled="disabled"
     @click="$emit('click')"
+    :title="title"
   >
     <slot />
   </button>
@@ -13,7 +13,8 @@
 <script setup>
 defineProps({
   color: { type: String, default: 'primary' },
-  tooltip: { type: String, default: '' }
+  disabled: { type: Boolean, default: false },
+  title: { type: String, default: '' },
 });
 </script>
 
